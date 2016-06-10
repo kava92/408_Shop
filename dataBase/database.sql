@@ -1,0 +1,17 @@
+CREATE TABLE User(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(70) NOT NULL,
+    PRIMARY KEY(id)
+)
+CREATE TABLE Item(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL,
+    price INT NOT NULL,
+    description CHAR(200),
+    availability TINYINT(1) DEFAULT 1,
+    PRIMARY KEY(id)
+)
+
