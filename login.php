@@ -1,5 +1,22 @@
 <?php
+session_start();
+require_once 'src/User.php';
+require_once 'config.php';
 
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $email =  strlen(trim($_POST['login'])) ? trim($_POST['login']) : null;
+        $password =  strlen(trim($_POST['password'])) ? trim($_POST['password']) : null;
+        
+        if($email && $password){
+           if($loggedUserId = User::login($conn, $email, $password)){
+               $_SESSION['loggedUserId'] = $loggedUserId;
+               header("Location: index.php");
+           }
+           else{
+               echo' Incorrect email or password<br>';
+           }
+        }
+    }
 
 
 
@@ -24,5 +41,5 @@
             </fieldset>
         </form>
     </body>
-</html>
+</html
 
