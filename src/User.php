@@ -114,4 +114,21 @@ class User{
         }
         
     }
+    public function loadFromDB(mysqli $conn, $id) {
+        $sql = "SELECT * FROM User WHERE id=$id";
+        $result = $conn->query($sql);
+        if($result->num_rows == 1) {
+            $rowUser = $result->fetch_assoc();
+            $this->id = $rowUser['id'];
+            $this->name = $rowUser['name'];
+            $this->surname = $rowUser['surname'];
+            $this->email = $rowUser['email'];
+            $this->password = $rowUser['password'];
+           
+            return $this;
+        }
+        else {
+            return null;
+        }
+    }
 }
