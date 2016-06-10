@@ -11,7 +11,21 @@ class User{
             return false;
         }
     }
-     public static function login(mysqli $conn, $email, $password) {
+    
+    public static function getUserByEmail(mysqli $conn,$email){
+        $sql = "SELECT * FROM User WHERE email = '$email'";
+        $result = $conn->query($sql);
+        if($result->num_rows == 1){
+            $row = $result->fetch_assoc();
+            return $row;
+            
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public static function login(mysqli $conn, $email, $password){
         $sql = "SELECT * FROM User WHERE email = '$email' ";
         $result = $conn->query($sql);
         if($result->num_rows == 1 ) {
