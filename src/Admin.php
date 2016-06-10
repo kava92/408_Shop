@@ -1,6 +1,6 @@
 <?php
 
-class User{
+class Admin{
     
     public static function getAdminByEmail(mysqli $conn, $email){
         $sql = "SELECT * FROM Admin WHERE email = '$email'";

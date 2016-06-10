@@ -2,10 +2,23 @@
 session_start();
 require_once 'src/User.php';
 require_once 'config.php';
-
+require_once 'src/Admin.php';
+//login do skonczenia
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $email =  strlen(trim($_POST['login'])) ? trim($_POST['login']) : null;
         $password =  strlen(trim($_POST['password'])) ? trim($_POST['password']) : null;
+        $admin = Admin::getAdminByEmail($conn, $email);
+        
+        if(!$admin == false && $password){
+            if($loggedUserId = Admin::login($conn, $email, $password)){
+               $_SESSION['loggedUserId'] = $loggedUserId;
+               header("Location: panel_admin.php");
+           }
+           else{
+               echo' Incorrect email or password<br>';
+           }
+        }
+        
         
         if($email && $password){
            if($loggedUserId = User::login($conn, $email, $password)){
