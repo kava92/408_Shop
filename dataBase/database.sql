@@ -11,7 +11,12 @@ CREATE TABLE Item(
     name VARCHAR(30) NOT NULL,
     price INT NOT NULL,
     description CHAR(200),
-    availability TINYINT(1) DEFAULT 1,
+    status TINYINT(1) DEFAULT 1,
     PRIMARY KEY(id)
 )
-
+CREATE TABLE Admin(
+    id INT NOT NULL AUTO_INCREMENT,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(70) NOT NULL,
+    PRIMARY KEY(id)
+)
